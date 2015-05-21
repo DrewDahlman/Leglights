@@ -29,7 +29,7 @@ console.log(mongo_db);
 
 // Setup Websockets
 var ws = require('nodejs-websocket'),
-    port = 5000,
+    port = process.env.PORT || 5000,
     connections = [];
 
 // view engine setup
