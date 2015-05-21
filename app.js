@@ -14,14 +14,14 @@ var api = require('./routes/api');
 var mongo = require('mongodb');
 var monk = require('monk');
 
+// Start our Express App
+var app = express();
+
 if(app.get('env') == "development"){
   var db = monk('localhost:27017/leglights');
 } else {
   var db = monk('ds031792.mongolab.com:31792/heroku_app37057289');
 }
-
-// Start our Express App
-var app = express();
 
 // Setup Websockets
 var ws = require('nodejs-websocket');
