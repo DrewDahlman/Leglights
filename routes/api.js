@@ -33,6 +33,14 @@ router.get('/logs', function(req, res) {
 
 });
 
+router.post("/clear", function(req, res){
+	var db = get_db(req, 'status');
+	db.remove();
+	res.json({
+		status: 200
+	})
+});
+
 // Post to the API
 router.post('/status', function(req, res){
 	var db = get_db(req, 'status');
