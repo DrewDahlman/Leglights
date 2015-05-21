@@ -13,7 +13,7 @@ function get_db(req, collection){
 
 // Index
 router.get('/', function(req, res) {
-	console.log("testing...");
+
 	res.json({
 		status: 200,
 		message: "You should provide a method!"
@@ -25,11 +25,9 @@ router.get('/logs', function(req, res) {
 	var db = get_db(req, 'status');
 	
 	db.find( { $query: {}, $orderby: { created_at: -1 } },function(event, data){
+		console.log("I haz data");
 		res.json(data);
 	});
-	// db.find( {}, {}, function(event, data){
-	// 	res.json(data);
-	// });
 
 });
 
