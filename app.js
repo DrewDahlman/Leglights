@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 
 // Routes
 var routes = require('./routes/index');
+var api = require('./routes/api');
 
 // Database
 var mongo = require('mongodb');
@@ -43,8 +44,15 @@ var ws_server = ws.createServer(function (conn) {
 
 }).listen(port);
 
+// Make our db accessible to our router
+app.use(function(req,res,next){
+    req.db = db;
+    next();
+});
+
 // Set the routes
 app.use('/', routes);
+app.use('/api', api);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
