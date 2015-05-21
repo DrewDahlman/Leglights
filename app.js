@@ -56,6 +56,8 @@ var ws_server = ws.createServer(function (conn) {
 
 }).listen(port);
 
+console.log(ws_server);
+
 // Make our db accessible to our router
 app.use(function(req,res,next){
     req.db = db;
