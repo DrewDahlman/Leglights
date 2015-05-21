@@ -28,9 +28,9 @@ var db = monk(mongo_db);
 console.log(mongo_db);
 
 // Setup Websockets
-var ws = require('nodejs-websocket');
-var port = 8000;
-var connections = [];
+var ws = require('nodejs-websocket'),
+    port = 8000,
+    connections = [];
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -44,6 +44,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Create the websocket server, provide connection callback
 var ws_server = ws.createServer(function (conn) {
+  // Say hello
+  conn.sendText('Connected');
 
   // Push the connection into the connections array
   connections.push(conn);

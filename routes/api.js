@@ -1,19 +1,44 @@
-var express = require('express');
-var router = express.Router();
+var express = require('express'),
+	router = express.Router();
 
-var statuses = ['on','off'];
-
+// Get DB
 function get_db(req, collection){
 	// Get the DB
 	var db = req.db;
 	var db_collection = db.get(collection) || db.createCollection(collection);
 
+	// return the selected document
 	return db_collection;
+}
+
+// Get new status
+function get_new_status(db, callback){
+	db.find( { $query: {}, $orderby: { created_at: -1 } }, function(event, data){
+		
+		if(data[0]){
+			if(data[0].status == "on"){
+				callback("off");
+			} else {
+				callback("on");
+			}
+		} else {
+			callback("on");
+		}
+	});
+}
+
+// Push Websockets
+function push_websockets(req, status){
+
+	req.app.get('connections').forEach( function(conn){
+		// conn.sendBinary(status);
+		// console.log(status);
+		conn.sendText(JSON.stringify(status));
+	});
 }
 
 // Index
 router.get('/', function(req, res) {
-
 	res.json({
 		status: 200,
 		message: "You should provide a method!"
@@ -42,21 +67,24 @@ router.post("/clear", function(req, res){
 router.post('/status', function(req, res){
 	var db = get_db(req, 'status');
 
-	var default_status = statuses[Math.round(Math.random() * (statuses.length - 1))]
+	get_new_status(db, function(status){
+		// Create the new record
+		var new_status = {
+			who: req.body.who || "Ghosts",
+			status: status,
+			message: req.body.message || "2 Spooky 4 Me",
+			created_at: Date.now()
+		}
 
-	// Create the new record
-	var new_status = {
-		who: req.body.who || "Ghosts",
-		status: req.body.status || default_status,
-		message: req.body.message || "",
-		created_at: Date.now()
-	}
+		// Insert the record
+		db.insert(new_status);
 
-	// Insert the record
-	db.insert(new_status);
+		// Push out to the web socks
+		push_websockets(req, new_status);
 
-	// Render out our new record!
-	res.json(new_status);
+		// Render out our new record!
+		res.json(new_status);
+	});
 });
 
 module.exports = router;
