@@ -4,19 +4,16 @@ var router = express.Router();
 var statuses = ['on','off'];
 
 function get_db(req, collection){
-		// Get the DB
+	// Get the DB
 	var db = req.db;
 	var leglights = db.get(collection) || db.createCollection(collection);
-
-	if(!leglights){
-		console.log("OH SHIT!")
-	}
 
 	return leglights;
 }
 
 // Index
 router.get('/', function(req, res) {
+	console.log("testing...");
 	res.json({
 		status: 200,
 		message: "You should provide a method!"
@@ -27,12 +24,12 @@ router.get('/', function(req, res) {
 router.get('/logs', function(req, res) {
 	var db = get_db(req, 'status');
 	
-	// db.find( { $query: {}, $orderby: { created_at: -1 } },function(event, data){
-	// 	res.json(data);
-	// });
-	db.find( {},{},function(event, data){
+	db.find( { $query: {}, $orderby: { created_at: -1 } },function(event, data){
 		res.json(data);
 	});
+	// db.find( {}, {}, function(event, data){
+	// 	res.json(data);
+	// });
 
 });
 
