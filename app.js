@@ -28,9 +28,9 @@ var db = monk(mongo_db);
 console.log(mongo_db);
 
 // Setup Websockets
-var ws = require('nodejs-websocket'),
-    port = 8000,
-    connections = [];
+var ws = require('nodejs-websocket');
+var port = 8000;
+var connections = [];
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

@@ -5,8 +5,7 @@
  */
 
 if(!process.env.NODE_ENV){
-  console.log("YEAHHHH");
-  process.env.NODE_ENV = "development";
+  process.env.NODE_ENV = "production";
 }
 
 var app = require('../app');
