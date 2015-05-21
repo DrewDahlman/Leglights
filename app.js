@@ -20,7 +20,7 @@ var app = express();
 // var db = monk('legbot:legw0rk!@ds031792.mongolab.com:31792/heroku_app37057289');
 console.log(process.env.NODE_ENV, process.env.MONGO_USER, process.env.MONGO_PW);
 
-if(!process.env.NODE_ENV){
+if(process.env.NODE_ENV == "development"){
   var db = monk('localhost:27017/leglights');
 } else {
   var db = monk('ds031792.mongolab.com:31792/heroku_app37057289',{
