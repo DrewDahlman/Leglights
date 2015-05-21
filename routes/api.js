@@ -6,9 +6,9 @@ var statuses = ['on','off'];
 function get_db(req, collection){
 	// Get the DB
 	var db = req.db;
-	var leglights = db.get(collection) || db.createCollection(collection);
+	var db_collection = db.get(collection) || db.createCollection(collection);
 
-	return leglights;
+	return db_collection;
 }
 
 // Index
@@ -23,11 +23,8 @@ router.get('/', function(req, res) {
 // GET the logs
 router.get('/logs', function(req, res) {
 	var db = get_db(req, 'status');
-	
-	console.log(db);
-	
+
 	db.find( { $query: {}, $orderby: { created_at: -1 } },function(event, data){
-		console.log(data);
 		res.json(data);
 	});
 
