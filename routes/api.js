@@ -27,7 +27,10 @@ router.get('/', function(req, res) {
 router.get('/logs', function(req, res) {
 	var db = get_db(req, 'status');
 	
-	db.find( { $query: {}, $orderby: { created_at: -1 } },function(event, data){
+	// db.find( { $query: {}, $orderby: { created_at: -1 } },function(event, data){
+	// 	res.json(data);
+	// });
+	db.find( {},{},function(event, data){
 		res.json(data);
 	});
 
