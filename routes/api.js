@@ -25,7 +25,7 @@ router.get('/logs', function(req, res) {
 	var db = get_db(req, 'status');
 	
 	db.find( { $query: {}, $orderby: { created_at: -1 } },function(event, data){
-		console.log("I haz data");
+		console.log(data);
 		res.json(data);
 	});
 
@@ -36,7 +36,7 @@ router.post("/clear", function(req, res){
 	db.remove();
 	res.json({
 		status: 200
-	})
+	});
 });
 
 // Post to the API
