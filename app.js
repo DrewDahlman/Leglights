@@ -23,6 +23,8 @@ console.log(process.env.NODE_ENV, process.env.MONGO_USER, process.env.MONGO_PW);
 if(process.env.NODE_ENV == "development"){
   var db = monk('localhost:27017/leglights');
 } else {
+  console.log(process.env.MONGO_USER+':'+process.env.MONGO_PW+'@ds031792.mongolab.com:31792/heroku_app37057289');
+  
   var db = monk(process.env.MONGO_USER+':'+process.env.MONGO_PW+'@ds031792.mongolab.com:31792/heroku_app37057289');
 }
 
