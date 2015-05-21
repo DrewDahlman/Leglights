@@ -30,7 +30,7 @@ function get_new_status(db, callback){
 // Push Websockets
 function push_websockets(req, status){
 
-	if(req.get('connections').length() > 0){
+	if(req.get('connections')){
 		req.app.get('connections').forEach( function(conn){
 			// conn.sendBinary(status);
 			// console.log(status);
