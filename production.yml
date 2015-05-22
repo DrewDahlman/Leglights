@@ -2,7 +2,7 @@ app:
   build: .
   ports:
     - "80:80"
-    - "5000:5000"
+    - "666:666"
   links:
     - db
   environment:

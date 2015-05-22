@@ -30,7 +30,7 @@ var db = monk(mongo_db);
 
 // Setup Websockets
 var ws = require('nodejs-websocket'),
-    port = 5000,
+    port = 666,
     connections = [];
 
 // view engine setup

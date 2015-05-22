@@ -20,4 +20,5 @@ A simple server that pushes notifications to robots to control the lights in the
 - `/api/status` - Update the status ( POST )
 
 ## Devices
-- `ws://APP_IP:5000` - Connect with Websockets for devices that should listen for payloads on status change
+- `ws://APP_IP:666` - Connect with Websockets for devices that should listen for payloads on status change
+- `ws://104.131.51.119:666` - Connect with Websockets for devices that should listen for payloads on status change ( Production )
