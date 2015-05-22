@@ -1,14 +1,12 @@
 app:
   build: .
-  volumes:
-    - .:/usr/src/app
   ports:
     - "80:80"
     - "5000:5000"
   links:
     - db
   environment:
-    - NODE_ENV=development
+    - NODE_ENV=production
 db:
   image: mongo
   ports:

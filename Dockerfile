@@ -1,3 +1,1 @@
-FROM nginx
-
-COPY config/nginx.conf /etc/nginx/nginx.conf
+FROM node:0.12-onbuild

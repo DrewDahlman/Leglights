@@ -17,10 +17,12 @@ var mongo = require('mongodb'),
 // Start our Express App
 var app = express();
 
+console.log(process.env.NODE_ENV);
+
 if(process.env.NODE_ENV == "development"){
   var mongo_db = '192.168.59.103:27017/leglights_db_1';
 } else {
-  // TODO: Setup production database
+  var mongo_db = '104.131.51.119:27017/leglights_db_1';
 }
 
 // Connect
@@ -34,7 +36,7 @@ var ws = require('nodejs-websocket'),
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-app.set('connections', connections);
+// app.set('connections', connections);
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
