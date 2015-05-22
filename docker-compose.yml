@@ -1,0 +1,17 @@
+web:
+  build: .
+  ports:
+    - "80:80"
+app:
+  image: node:0.12-onbuild
+  volumes:
+    - .:/usr/src/app
+  ports:
+    - "3000:3000"
+    - "5000:5000"
+  links:
+    - db
+db:
+  image: mongo
+  ports:
+    - "27017:27017"

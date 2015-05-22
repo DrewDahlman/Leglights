@@ -18,14 +18,13 @@ var mongo = require('mongodb'),
 var app = express();
 
 if(process.env.NODE_ENV == "development"){
-  var mongo_db = 'localhost:27017/leglights';
+  var mongo_db = '192.168.59.103:27017/leglights_db_1';
 } else {
-  var mongo_db = process.env.MONGO_USER+':'+process.env.MONGO_PW+'@ds031792.mongolab.com:31792/heroku_app37057289';
+  // TODO: Setup production database
 }
 
 // Connect
 var db = monk(mongo_db);
-console.log(mongo_db);
 
 // Setup Websockets
 var ws = require('nodejs-websocket'),
@@ -55,8 +54,6 @@ var ws_server = ws.createServer(function (conn) {
   app.set('connections', connections);
 
 }).listen(port);
-
-console.log(ws_server);
 
 // Make our db accessible to our router
 app.use(function(req,res,next){

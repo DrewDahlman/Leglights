@@ -32,11 +32,10 @@ function push_websockets(req, status){
 
 	if(req.get('connections')){
 		req.app.get('connections').forEach( function(conn){
-			// conn.sendBinary(status);
-			// console.log(status);
 			conn.sendText(JSON.stringify(status));
 		});
 	}
+	
 }
 
 // Index
