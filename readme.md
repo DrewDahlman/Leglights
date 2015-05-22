@@ -8,7 +8,12 @@ A simple app to control the lights in the office.
 - run `boot2docker up`
 - run `docker-compose build`
 - run `docker-compose up`
-- Check'r out ( check your IP: `boot2docker ip` will show you the IP)
+- Check'r out ( check your IP: `boot2docker ip` will show you the IP )
+
+## Running
+- cd into project directory
+- run `docker-compose up`
+- Check'r out ( check your IP: `boot2docker ip` will show you the IP )
 
 ## Routes
 - `/api/logs` - show all logs
