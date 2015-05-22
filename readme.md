@@ -1,5 +1,5 @@
 ## Leglights
-A simple app to control the lights in the office.
+A simple server that pushes notifications to robots to control the lights in the office.
 
 ## Setup / Requirements
 - Have Docker (https://docs.docker.com/)
